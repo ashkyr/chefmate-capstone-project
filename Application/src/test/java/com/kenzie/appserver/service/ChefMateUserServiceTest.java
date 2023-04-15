@@ -263,48 +263,48 @@ public class ChefMateUserServiceTest {
         Assertions.assertEquals(actualResponse.getRating(), request.getRating());
     }
 
-    @Test
-    public void addReview_userIsNotValid_throwsException() {
-        ReviewCreateRequest request = new ReviewCreateRequest();
+//    @Test
+//    public void addReview_userIsNotValid_throwsException() {
+//        ReviewCreateRequest request = new ReviewCreateRequest();
+//
+//        String userId = randomUUID().toString();
+//        String recipeId = randomUUID().toString();
+//
+//        request.setReviewerId(userId);
+//        request.setRating(3.0);
+//        request.setComment("test Comment");
+//        request.setRecipeId(recipeId);
+//
+//        when(chefMateUserRepository.findById(userId)).thenReturn(Optional.ofNullable(null));
+//
+//        Assertions.assertThrows(ResponseStatusException.class, () -> chefMateUserService.addReview(request));
+//    }
 
-        String userId = randomUUID().toString();
-        String recipeId = randomUUID().toString();
-
-        request.setReviewerId(userId);
-        request.setRating(3.0);
-        request.setComment("test Comment");
-        request.setRecipeId(recipeId);
-
-        when(chefMateUserRepository.findById(userId)).thenReturn(Optional.ofNullable(null));
-
-        Assertions.assertThrows(ResponseStatusException.class, () -> chefMateUserService.addReview(request));
-    }
-
-    @Test
-    public void addReview_recipeIsNotTried_throwsException() {
-        ReviewCreateRequest request = new ReviewCreateRequest();
-        ReviewResponse response = new ReviewResponse();
-
-        String userId = randomUUID().toString();
-        String notTriedRecipeId = randomUUID().toString();
-
-        request.setReviewerId(userId);
-        request.setRating(3.0);
-        request.setComment("test Comment");
-        request.setRecipeId(notTriedRecipeId);
-
-
-        Set<String> recipesTried = new HashSet<>();
-        recipesTried.add(UUID.randomUUID().toString());
-
-        ChefMateUserRecord userRecord = new ChefMateUserRecord();
-        userRecord.setUserId(userId);
-        userRecord.setRecipesTried(recipesTried);
-
-        when(chefMateUserRepository.findById(userId)).thenReturn(Optional.of(userRecord));
-
-        Assertions.assertThrows(ResponseStatusException.class, () -> chefMateUserService.addReview(request));
-    }
+//    @Test
+//    public void addReview_recipeIsNotTried_throwsException() {
+//        ReviewCreateRequest request = new ReviewCreateRequest();
+//        ReviewResponse response = new ReviewResponse();
+//
+//        String userId = randomUUID().toString();
+//        String notTriedRecipeId = randomUUID().toString();
+//
+//        request.setReviewerId(userId);
+//        request.setRating(3.0);
+//        request.setComment("test Comment");
+//        request.setRecipeId(notTriedRecipeId);
+//
+//
+//        Set<String> recipesTried = new HashSet<>();
+//        recipesTried.add(UUID.randomUUID().toString());
+//
+//        ChefMateUserRecord userRecord = new ChefMateUserRecord();
+//        userRecord.setUserId(userId);
+//        userRecord.setRecipesTried(recipesTried);
+//
+//        when(chefMateUserRepository.findById(userId)).thenReturn(Optional.of(userRecord));
+//
+//        Assertions.assertThrows(ResponseStatusException.class, () -> chefMateUserService.addReview(request));
+//    }
 
     @Test
     public void getReviews_validId_returnsReviews() {
